@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    paths-ignore:
+      - .gitignore
+      - README.md
+  pull_request:
+    paths-ignore:
+      - .gitignore
+      - README.md
+
+jobs:
+  build:
+    runs-on: windows-2019
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: Extract libs from .zip
+      run: |
+        tar -xf dx9sdk.zip
+        tar -xf public.zip
+        tar -xf thirdparty.zip
+        tar -xf tier0.zip
+        tar -xf vscript.zip
+        cd lib
+        tar -xf win32.zip
+    - name: Extract lib.7z
+      uses: DuckSoft/extract-7z-action@v1.0
+      with:
+        pathSource: lib.7z
+        pathTarget: .
+    - name: Install Windows 8.1 SDK
+      shell: powershell
+      run: |
+        Invoke-WebRequest -Method Get -Uri https://go.microsoft.com/fwlink/p/?LinkId=323507 -OutFile sdksetup.exe -UseBasicParsing
+        Start-Process -Wait sdksetup.exe -ArgumentList "/q", "/norestart", "/features", "OptionId.WindowsDesktopSoftwareDevelopmentKit", "OptionId.NetFxSoftwareDevelopmentKit"
+    - uses: microsoft/setup-msbuild@v1.0.2
+    - name: Build (Client)
+      run: msbuild /m /nologo /t:Build /p:Configuration=Release /p:AllowedReferenceRelatedFileExtensions=none /p:DefineConstants="NOVERIFY" game/client/client_csgo.vcxproj
+    - name: Build (Server)
+      run: msbuild /m /nologo /t:Build /p:Configuration=Release /p:AllowedReferenceRelatedFileExtensions=none /p:DefineConstants="NOVERIFY" game/server/server_csgo.vcxproj
+    - name: Build (Engine)
+      run: msbuild /m /nologo /t:Build /p:Configuration=Release /p:AllowedReferenceRelatedFileExtensions=none /p:DefineConstants="NOVERIFY" engine/engine.vcxproj
+    - name: Prepare artifacts
+      run: |
+        mv game/client/Release_csgo/client.dll .\csgo\bin
+        mv game/server/Release_csgo/server.dll .\csgo\bin
+        mv engine/Release/engine.dll .\bin
+    - uses: actions/upload-artifact@v2
+      with:
+        name: cstrike15_src-CI
+        path: |
+          csgo/bin/client.dll
+          csgo/bin/server.dll
+          bin/engine.dll
