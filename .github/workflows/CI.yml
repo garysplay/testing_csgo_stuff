@@ -45,6 +45,8 @@ jobs:
       run: msbuild /m /nologo /t:Build /p:Configuration=Release /p:AllowedReferenceRelatedFileExtensions=none /p:DefineConstants="NOVERIFY" engine/engine.vcxproj
     - name: Prepare artifacts
       run: |
+        rm bin/engine.dll
+        rm csgo/bin/* -Include *.dll
         mv game/client/Release_csgo/client.dll .\csgo\bin
         mv game/server/Release_csgo/server.dll .\csgo\bin
         mv engine/Release/engine.dll .\bin
