@@ -43,13 +43,16 @@ jobs:
       run: msbuild /m /nologo /t:Build /p:Configuration=Release /p:AllowedReferenceRelatedFileExtensions=none /p:DefineConstants="NOVERIFY" game/server/server_csgo.vcxproj
     - name: Build (Engine)
       run: msbuild /m /nologo /t:Build /p:Configuration=Release /p:AllowedReferenceRelatedFileExtensions=none /p:DefineConstants="NOVERIFY" engine/engine.vcxproj
+    - name: Build (Tier0)
+      run: msbuild /m /nologo /t:Build /p:Configuration=Release /p:AllowedReferenceRelatedFileExtensions=none /p:DefineConstants="NOVERIFY" tier0/tier0.vcxproj
     - name: Prepare artifacts
       run: |
-        rm bin/engine.dll
         rm csgo/bin/* -Include *.dll
+        rm bin/* -Include *.dll
         mv game/client/Release_csgo/client.dll .\csgo\bin
         mv game/server/Release_csgo/server.dll .\csgo\bin
         mv engine/Release/engine.dll .\bin
+        mv tier0/Release/tier0.dll .\bin
     - uses: actions/upload-artifact@v2
       with:
         name: cstrike15_src-CI
@@ -57,3 +60,4 @@ jobs:
           csgo/bin/client.dll
           csgo/bin/server.dll
           bin/engine.dll
+          bin/tier0.dll
