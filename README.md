@@ -24,6 +24,6 @@ perilouswithadollarsign for hosting [leaked sources](https://github.com/perilous
 
 FluorescentCIAAfricanAmerican for hosting [.lib of hl2_src](https://github.com/FluorescentCIAAfricanAmerican/source-engine-2018-lib/releases/download/1/hl2_src-lib.7z)
 
-SwagSoftware for hosting [.lib of cstrike15_src](https://github.com/SwagSoftware/Kisak-Strike/tree/9cec48ae0f2c36269bcd9908348599c51df19023)
+SwagSoftware for hosting [.lib of cstrike15_src](https://github.com/SwagSoftware/Kisak-Strike/tree/9cec48ae0f2c36269bcd9908348599c51df19023) and different fixes
 
 [gitpod.io](https://github.com/gitpod-io/gitpod) for easily uploading 25+ MB files
