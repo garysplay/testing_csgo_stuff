@@ -34,7 +34,7 @@ jobs:
       run: |
         Invoke-WebRequest -Method Get -Uri https://go.microsoft.com/fwlink/p/?LinkId=323507 -OutFile sdksetup.exe -UseBasicParsing
         Start-Process -Wait sdksetup.exe -ArgumentList "/q", "/norestart", "/features", "OptionId.WindowsDesktopSoftwareDevelopmentKit", "OptionId.NetFxSoftwareDevelopmentKit"
-    - uses: microsoft/setup-msbuild@v1.0.2
+    - uses: microsoft/setup-msbuild@v1.0.3
     - name: Build (Client)
       run: msbuild /m /nologo /t:Build /p:Configuration=Release game/client/client_csgo.vcxproj
     - name: Build (Server)
