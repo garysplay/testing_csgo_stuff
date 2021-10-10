@@ -7,6 +7,8 @@ on:
   pull_request:
     paths-ignore:
       - .gitignore
+  schedule:
+    - cron: '0 0 1 * *' # Monthly
 
 jobs:
   build:
