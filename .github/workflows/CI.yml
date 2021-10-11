@@ -27,7 +27,7 @@ jobs:
         tar -xf vscript.zip
         cd lib
         tar -xf win32.zip
-    - name: Prepare artifacts
+    - name: Clear some directories for artifacts
       run: |
         rm csgo/bin/* -Include *.dll
         rm bin/* -Include *.dll
@@ -37,14 +37,22 @@ jobs:
         Invoke-WebRequest -Method Get -Uri https://go.microsoft.com/fwlink/p/?LinkId=323507 -OutFile sdksetup.exe -UseBasicParsing
         Start-Process -Wait sdksetup.exe -ArgumentList "/q", "/norestart", "/features", "OptionId.WindowsDesktopSoftwareDevelopmentKit", "OptionId.NetFxSoftwareDevelopmentKit"
     - uses: microsoft/setup-msbuild@v1.0.3
-    - name: Build (Client)
-      run: msbuild /m /nologo /t:Build /p:Configuration=Release game/client/client_csgo.vcxproj
-    - name: Build (Server)
-      run: msbuild /m /nologo /t:Build /p:Configuration=Release game/server/server_csgo.vcxproj
-    - name: Build (Engine)
-      run: msbuild /m /nologo /t:Build /p:Configuration=Release engine/engine.vcxproj
-    - name: Build (Tier0)
-      run: msbuild /m /nologo /t:Build /p:Configuration=Release tier0/tier0.vcxproj
+    - name: Build
+      run: |
+        msbuild /m /nologo /t:Build /p:Configuration=Release matchmaking/matchmaking_csgo.vcxproj
+        msbuild /m /nologo /t:Build /p:Configuration=Release game/client/client_csgo.vcxproj
+        msbuild /m /nologo /t:Build /p:Configuration=Release game/server/server_csgo.vcxproj
+        msbuild /m /nologo /t:Build /p:Configuration=Release engine/engine.vcxproj
+        msbuild /m /nologo /t:Build /p:Configuration=Release materialsystem/stdshaders/stdshader_dx9.vcxproj
+        msbuild /m /nologo /t:Build /p:Configuration=Release tier0/tier0.vcxproj
+    - name: Move builded DLLs into specific directories
+      run: |
+        mv matchmaking/Release_csgo/matchmaking.dll .\csgo\bin
+        mv game/client/Release_csgo/client.dll .\csgo\bin
+        mv game/server/Release_csgo/server.dll .\csgo\bin
+        mv engine/Release/engine.dll .\bin
+        mv materialsystem/stdshaders/Release/stdshader_dx9.dll .\bin
+        mv tier0/Release/tier0.dll .\bin
     - uses: actions/upload-artifact@v2
       with:
         name: cstrike15_src-CI
