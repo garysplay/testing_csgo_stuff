@@ -51,7 +51,7 @@ jobs:
         mv game/client/Release_csgo/client.dll .\csgo\bin
         mv game/server/Release_csgo/server.dll .\csgo\bin
         mv engine/Release/engine.dll .\bin
-        mv materialsystem/stdshaders/Release/stdshader_dx9.dll .\bin
+        mv materialsystem/stdshaders/Release_dx9/stdshader_dx9.dll .\bin
         mv tier0/Release/tier0.dll .\bin
     - uses: actions/upload-artifact@v2
       with:
