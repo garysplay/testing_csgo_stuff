@@ -17,16 +17,16 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: recursive
-    - name: Extract libs from .zip
+    - name: Extract libs from archives
       run: |
-        7z x lib.7z
+        7z x -y lib.7z
         tar -xf dx9sdk.zip
         tar -xf public.zip
         tar -xf thirdparty.zip
         tar -xf tier0.zip
         tar -xf vscript.zip
         cd lib
-        tar -xf win32.zip 
+        tar -xf win32.zip
     - name: Install Windows 8.1 SDK
       shell: powershell
       run: |
