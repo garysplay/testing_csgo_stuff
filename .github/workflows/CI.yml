@@ -19,18 +19,14 @@ jobs:
         submodules: recursive
     - name: Extract libs from .zip
       run: |
+        7z x lib.7z
         tar -xf dx9sdk.zip
         tar -xf public.zip
         tar -xf thirdparty.zip
         tar -xf tier0.zip
         tar -xf vscript.zip
         cd lib
-        tar -xf win32.zip
-    - name: Extract lib.7z
-      uses: DuckSoft/extract-7z-action@v1.0
-      with:
-        pathSource: lib.7z
-        pathTarget: .
+        tar -xf win32.zip 
     - name: Install Windows 8.1 SDK
       shell: powershell
       run: |
