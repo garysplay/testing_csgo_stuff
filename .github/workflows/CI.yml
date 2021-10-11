@@ -27,6 +27,10 @@ jobs:
         tar -xf vscript.zip
         cd lib
         tar -xf win32.zip
+    - name: Prepare artifacts
+      run: |
+        rm csgo/bin/* -Include *.dll
+        rm bin/* -Include *.dll
     - name: Install Windows 8.1 SDK
       shell: powershell
       run: |
@@ -41,14 +45,6 @@ jobs:
       run: msbuild /m /nologo /t:Build /p:Configuration=Release engine/engine.vcxproj
     - name: Build (Tier0)
       run: msbuild /m /nologo /t:Build /p:Configuration=Release tier0/tier0.vcxproj
-    - name: Prepare artifacts
-      run: |
-        rm csgo/bin/* -Include *.dll
-        rm bin/* -Include *.dll
-        mv game/client/Release_csgo/client.dll .\csgo\bin
-        mv game/server/Release_csgo/server.dll .\csgo\bin
-        mv engine/Release/engine.dll .\bin
-        mv tier0/Release/tier0.dll .\bin
     - uses: actions/upload-artifact@v2
       with:
         name: cstrike15_src-CI
