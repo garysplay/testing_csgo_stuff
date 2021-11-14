@@ -31,6 +31,7 @@ jobs:
       run: |
         rm csgo/bin/* -Include *.dll
         rm bin/* -Include *.dll
+    # https://github.com/actions/virtual-environments/issues/842#issuecomment-643382166
     - name: Install Windows 8.1 SDK
       shell: powershell
       run: |
@@ -39,19 +40,13 @@ jobs:
     - uses: microsoft/setup-msbuild@v1.0.3
     - name: Build
       run: |
-        msbuild /m /nologo /t:Build /p:Configuration=Release matchmaking/matchmaking_csgo.vcxproj
         msbuild /m /nologo /t:Build /p:Configuration=Release game/client/client_csgo.vcxproj
         msbuild /m /nologo /t:Build /p:Configuration=Release game/server/server_csgo.vcxproj
-        msbuild /m /nologo /t:Build /p:Configuration=Release engine/engine.vcxproj
-        msbuild /m /nologo /t:Build /p:Configuration=Release materialsystem/stdshaders/stdshader_dx9.vcxproj
         msbuild /m /nologo /t:Build /p:Configuration=Release tier0/tier0.vcxproj
     - name: Move builded DLLs into specific directories
       run: |
-        mv matchmaking/Release_csgo/matchmaking.dll .\csgo\bin
         mv game/client/Release_csgo/client.dll .\csgo\bin
         mv game/server/Release_csgo/server.dll .\csgo\bin
-        mv engine/Release/engine.dll .\bin
-        mv materialsystem/stdshaders/Release_dx9/stdshader_dx9.dll .\bin
         mv tier0/Release/tier0.dll .\bin
     - uses: actions/upload-artifact@v2
       with:
