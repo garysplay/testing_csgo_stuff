@@ -1,5 +1,7 @@
 # cstrike15_src-CI
 
+This project is supported by a Windows user, alternative for Linux platform - https://github.com/SwagSoftware/Kisak-Strike
+
 ## Depots (https://github.com/SteamRE/DepotDownloader)
 
 -app 730 -depot 731 -manifest 7043469183016184477 -username USERNAME -password PASSWORD
