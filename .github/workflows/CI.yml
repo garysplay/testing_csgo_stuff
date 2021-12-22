@@ -1,4 +1,4 @@
-name: C++ CI
+name: CI
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
     paths-ignore:
       - .gitignore
       - README.md
+  workflow_dispatch:
   schedule:
     - cron: '0 0 1 * *' # Monthly
 
