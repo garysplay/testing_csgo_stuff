@@ -1,5 +1,7 @@
 # cstrike15_src-CI
 
+[![Build Status](https://github.com/SmileyAG/cstrike15_src-CI/workflows/CI/badge.svg?branch=fixes-from-kisak-strike)](https://github.com/SmileyAG/cstrike15_src-CI/actions?query=branch:fixes-from-kisak-strike)
+
 This project is supported by a Windows user, alternative for Linux platform - https://github.com/SwagSoftware/Kisak-Strike
 
 ## Depots (https://github.com/SteamRE/DepotDownloader)
