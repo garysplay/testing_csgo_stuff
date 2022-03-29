@@ -46,7 +46,6 @@ jobs:
         msbuild /m /t:Build /p:Configuration=Release game/client/client_csgo.vcxproj
         msbuild /m /t:Build /p:Configuration=Release game/server/server_csgo.vcxproj
         msbuild /m /t:Build /p:Configuration=Release engine/engine.vcxproj
-        msbuild /m /t:Build /p:Configuration=Release tier0/tier0.vcxproj
     - name: Move builded DLLs into specific directories
       run: |
         mv game/client/Release_csgo/client.dll .\csgo\bin
@@ -55,11 +54,9 @@ jobs:
         mv game/server/Release_csgo/server.pdb .\csgo\bin
         mv engine/Release/engine.dll .\bin
         mv engine/Release/engine.pdb .\bin
-        mv tier0/Release/tier0.dll .\bin
-        mv tier0/Release/tier0.pdb .\bin
     - uses: actions/upload-artifact@v3
       with:
-        name: cstrike15_src-CI
+        name: cstrike15_src-CI-clean
         path: |
           csgo
           bin
