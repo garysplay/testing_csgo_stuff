@@ -1,4 +1,4 @@
-//========= Copyright ï¿½ 1996-2003, Valve LLC, All rights reserved. ============
+//========= Copyright © 1996-2003, Valve LLC, All rights reserved. ============
 //
 // Purpose: 
 //
@@ -95,7 +95,6 @@ CEconItemSystem::~CEconItemSystem( void )
 //-----------------------------------------------------------------------------
 void CEconItemSystem::Init( void )
 {
-	ParseItemSchemaFile( "scripts/items/items_game.txt" );
 #ifdef CLIENT_DLL
 	IGameEvent *event = gameeventmanager->CreateEvent( "item_schema_initialized" );
 	if ( event )

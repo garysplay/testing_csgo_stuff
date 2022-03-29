@@ -3061,7 +3061,6 @@ void CWeaponCSBase::Spawn()
 {
 	m_nWeaponID = WeaponIdFromString( GetClassname() );
 
-	BaseClass::InitializeAttributes();
 	BaseClass::Spawn();
 
 	// Override the bloat that our base class sets as it's a little bit bigger than we want.
@@ -3833,36 +3832,7 @@ void CWeaponCSBase::OnLand( float fVelocity )
 
 void CWeaponCSBase::Recoil( CSWeaponMode weaponMode )
 {
-	//lwss - rebuilt this function from reversing retail bins
-	float angle;
-    float magnitude;
-    int seed;
-    CCSPlayer *pPlayer = GetPlayerOwner();
-    if ( !pPlayer )
-        return;
-
-	//update: Special Thanks to PiMoNFeeD for noticing I missed an if-statement here with the vfunc IsFullAuto().
-    // The recoil was a bit wonky.
-    if( !IsFullAuto() )
-    {
-        seed = GetPredictionRandomSeed();
-    }
-    else
-    {
-        seed = (int) m_flRecoilIndex;
-    }
-
-    if( weapon_legacy_recoiltable.GetBool() )
-    {
-        GetCSWpnData().GetRecoilOffsets( weaponMode, seed, angle, magnitude );
-    }
-    else
-    {
-        g_WeaponRecoilData.GetRecoilOffsets( this, weaponMode, seed, angle, magnitude );
-    }
-
-    pPlayer->KickBack( angle, magnitude );
-    //lwss end
+	/** Removed for partner depot **/
 }
 
 #ifdef CLIENT_DLL

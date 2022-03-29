@@ -1757,7 +1757,6 @@ void CBaseCombatWeapon::SetViewModel()
 //-----------------------------------------------------------------------------
 bool CBaseCombatWeapon::SendWeaponAnim( int iActivity )
 {
-	iActivity = TranslateViewmodelHandActivity( (Activity)iActivity );
 	//For now, just set the ideal activity and be done with it
 	return SetIdealActivity( (Activity) iActivity );
 }
@@ -3389,12 +3388,12 @@ END_NETWORK_TABLE()
 
 const CEconItemView* CBaseCombatWeapon::GetEconItemView( void ) const
 {
-	return BaseClass::GetEconItemView();
+	return nullptr;
 }
 
 CEconItemView* CBaseCombatWeapon::GetEconItemView( void )
 {
-	return (CEconItemView*)BaseClass::GetEconItemView();
+	return nullptr;
 }
 
 int CBaseCombatWeapon::GetReserveAmmoCount( AmmoPosition_t nAmmoPosition, CBaseCombatCharacter * pForcedOwner/* = NULL*/  )
