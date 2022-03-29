@@ -1,8 +1,6 @@
-# cstrike15_src-CI
+# cstrike15_src-CI-clean
 
-[![Build Status](https://github.com/SmileyAG/cstrike15_src-CI/workflows/CI/badge.svg?branch=fixes-from-kisak-strike)](https://github.com/SmileyAG/cstrike15_src-CI/actions?query=branch:fixes-from-kisak-strike)
-
-This project is supported by a Windows user, alternative for Linux platform - https://github.com/SwagSoftware/Kisak-Strike
+[![Build Status](https://github.com/SmileyAG/cstrike15_src-CI/workflows/CI/badge.svg?branch=clean)](https://github.com/SmileyAG/cstrike15_src-CI/actions?query=branch:clean)
 
 ## Depots (https://github.com/SteamRE/DepotDownloader)
 
@@ -14,7 +12,7 @@ This project is supported by a Windows user, alternative for Linux platform - ht
 
 John Cartwright for [the installation guide](https://securitronlinux.com/battlefield/how-to-compile-the-leaked-csgo-source-code-leak-this-apparently-works/)
 
-SwagSoftware for hosting [.lib of cstrike15_src](https://github.com/SwagSoftware/Kisak-Strike/tree/9cec48ae0f2c36269bcd9908348599c51df19023) and different fixes
+SwagSoftware for hosting [.lib of cstrike15_src](https://github.com/SwagSoftware/Kisak-Strike/tree/9cec48ae0f2c36269bcd9908348599c51df19023)
 
 FluorescentCIAAfricanAmerican for hosting [.lib of hl2_src](https://github.com/FluorescentCIAAfricanAmerican/source-engine-2018-lib/releases/download/1/hl2_src-lib.7z)
 
